@@ -18,7 +18,10 @@
     ></script>
   </head>
   <body>
-    <table class="table table-striped table-hover" style="width: 80%; margin: 5% auto 0 auto; text-align: center;">
+    <table
+      class="table table-striped table-hover"
+      style="width: 80%; margin: 5% auto 0 auto; text-align: center"
+    >
       <thead>
         <tr>
           <th scope="col">NO</th>
@@ -37,7 +40,6 @@
 
     <!-- Mengambil Data (API) -->
     <script>
-
       const BASE_URL = "https://dummyapi.io";
       // Ready = event
       $(document).ready(function () {
@@ -53,18 +55,15 @@
           dataType: "json",
           // Ketika berhasil request,  Bakap ngapain
           success: function (response) {
-
             let content = "";
             let data = response.data;
             for (let i = 0; i < data.length; i++) {
-
               content += `<tr>
                 <th scope="row">${i + 1}</th>
                 <td>${data[i]["firstName"]}</td>
                 <td>${data[i]["lastName"]}</td>
                 <td><img src="${data[i]["picture"]}"></td>
               </tr>`;
-
             }
             // $("#": getelementbyid)
             // .html(): menuliskan html = innerHTML
@@ -72,7 +71,6 @@
           },
         });
       });
-
     </script>
   </body>
 </html>
