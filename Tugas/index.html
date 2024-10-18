@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Tugas</title>
+   <!-- google font -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+   <!-- CSS -->
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+      }
+      h1,h2,h3,h4,h5,h6 {
+         font-size: medium;
+      }
+      input {
+         padding: 4px 5px;
+         width: 900px;
+         border: 1px solid lightblue;
+         border-radius: 5px;
+      }
+      button {
+         all: unset;
+         padding: 3px 3px;
+         width: 100px;
+         border-radius: 5px;
+         transition: all .5s ease;
+         text-align: center;
+         border: 1px solid lightblue;
+      }
+      button:hover {
+         cursor: pointer;
+         background-color: rgb(11, 10, 10);
+         color: white;
+      }
+      p {
+         font-size: small;
+      }
+      img {
+         width: 100px;
+         height: 100px;
+         border-radius: 6px;
+         margin: 0 10px 10px 0;
+      }
+      body {
+         background-color: white;
+      }
+      .container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+      }
+      .content {
+         width: 100%;
+         display: flex;
+         justify-content: space-around;
+         padding: 20px;
+      }
+      .card {
+         width: 350px;
+         background-color: bisque;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow : 0px 10px 20px 0px rgba(0, 0, 0, 0.08);
+      }
+      .search {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         gap: 20px;
+      }
+      .container-header-card {
+         display: flex;
+         width: 100%;
+      }
+      #area {
+         font-weight: 500;
+      }
+   </style>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+   <div class="container">
+      <div class="content">
+         <div class="search">
+            <input type="text" id="search" placeholder="Cari Makanan..">
+            <button type="button" id="button">Cari</button>
+         </div>
+         <div class="card">
+            <div class="container-header-card">
+               <img src="" alt="">
+               <div class="container-header-card-title">
+                  <p>Favorite</p>
+                  <h1></h1>
+                  <h3 id="area"></h3>
+               </div>
+            </div>
+            <div class="description">
+               <p id="instructions"></p>
+               <h3 id="category"></h3>
+               <h3>Ingredient</h3>
+               <p id="ingredients"></p>
+            </div>
+         </div>
+      </div>
+   </div>
+
+<script>
+
+   const BASE_URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
+
+   $(document).ready(function() {
+     $.ajax({
+      type: "GET",
+      url: BASE_URL,
+      dataType: "json",
+      success: function(response) {
+        const meals = response.meals[0];
+        let ingredients = [ 
+            meals.strIngredient1, 
+            meals.strIngredient2, 
+            meals.strIngredient3, 
+            meals.strIngredient4, 
+            meals.strIngredient5, 
+            meals.strIngredient6, 
+            meals.strIngredient7, 
+            meals.strIngredient8, 
+            meals.strIngredient9 
+         ]; 
+
+        $(".card img").attr("src", meals.strMealThumb);
+        $(".card h1").text(meals.strMeal);
+        $(".card #instructions").text(meals.strInstructions);
+        $(".card #category").text("Kategori : " + meals.strCategory);
+        $(".card #area").text("From : " + meals.strArea);
+        $(".card #ingredients").text(ingredients);
+
+      }
+     });
+   });
+
+</script>
+
+</body>
+</html>
