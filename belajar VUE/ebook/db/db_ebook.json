@@ -1,0 +1,44 @@
+{
+   "book_categories" : [
+      {
+         "id": 1,
+         "name": "Fantasy"
+      },
+      {
+         "id": 2,
+         "name": "Adventure"
+      },
+      {
+         "id": 3,
+         "name": "Horror" 
+      },
+      {
+         "id": 4,
+         "name": "Romance"
+      }
+   ],
+   "books" : [
+      {
+         "id": 1,
+         "book_category_id": 3,
+         "title": "legenda pocong keliling",
+         "author": "Rizky",
+         "synopsis": "Leganda pocong keliling adalah cerita fiksi dari rakyat yang ada di sebuah desa di daerah jawa tengah."
+      }
+   ],
+   "book_chapters" : [
+      {
+         "id": 1,
+         "book_id": 1,
+         "title": "chapter 1",
+         "content": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab tenetur ea unde aperiam enim dicta sequi suscipit officia asperiores aspernatur distinctio blanditiis, ducimus voluptatum, beatae voluptate voluptatibus hic assumenda nihil vel quis libero ipsum explicabo sed voluptatem. Cum omnis est assumenda labore, saepe porro cumque consectetur eligendi soluta atque doloremque."
+      }
+   ],
+   "books_reviews" : [
+      {
+         "id": 1,
+         "book_id": 1,
+         "total_likes": 5
+      }
+   ]
+}

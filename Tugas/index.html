@@ -9,91 +9,31 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
    <!-- CSS -->
-   <style>
-      * {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-         font-family: 'Poppins', sans-serif;
-      }
-      h1,h2,h3,h4,h5,h6 {
-         font-size: medium;
-      }
-      input {
-         padding: 4px 5px;
-         width: 900px;
-         border: 1px solid lightblue;
-         border-radius: 5px;
-      }
-      button {
-         all: unset;
-         padding: 3px 3px;
-         width: 100px;
-         border-radius: 5px;
-         transition: all .5s ease;
-         text-align: center;
-         border: 1px solid lightblue;
-      }
-      button:hover {
-         cursor: pointer;
-         background-color: rgb(11, 10, 10);
-         color: white;
-      }
-      p {
-         font-size: small;
-      }
-      img {
-         width: 100px;
-         height: 100px;
-         border-radius: 6px;
-         margin: 0 10px 10px 0;
-      }
-      body {
-         background-color: white;
-      }
-      .container {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         height: 100vh;
-      }
-      .content {
-         width: 100%;
-         display: flex;
-         justify-content: space-around;
-         padding: 20px;
-      }
-      .card {
-         width: 350px;
-         background-color: bisque;
-         padding: 20px;
-         border-radius: 10px;
-         box-shadow : 0px 10px 20px 0px rgba(0, 0, 0, 0.08);
-      }
-      .search {
-         display: flex;
-         justify-content: space-between;
-         align-items: flex-start;
-         gap: 20px;
-      }
-      .container-header-card {
-         display: flex;
-         width: 100%;
-      }
-      #area {
-         font-weight: 500;
-      }
-   </style>
+   <link rel="stylesheet" href="style.css">
+   <!-- jquery -->
    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
 
    <div class="container">
       <div class="content">
-         <div class="search">
-            <input type="text" id="search" placeholder="Cari Makanan..">
-            <button type="button" id="button">Cari</button>
+
+         <div class="search-content">
+            <div class="search">
+               <input type="text" id="search" placeholder="Cari Makanan..">
+               <button type="button" id="btn">Cari</button>
+            </div>
+            <!-- Result Search -->
+            <div class="result">
+               <img src="" alt="">
+               <div class="description-result">
+                  <h1></h1>
+                  <p></p>
+               </div>
+            </div>
          </div>
+
+         <!-- CARD FAVORITE -->
          <div class="card">
             <div class="container-header-card">
                <img src="" alt="">
@@ -110,12 +50,15 @@
                <p id="ingredients"></p>
             </div>
          </div>
+         
       </div>
    </div>
 
 <script>
 
    const BASE_URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772";
+   const BASE_URL_SEARCH = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+   const INPUT_USER = $("#search");   
 
    $(document).ready(function() {
      $.ajax({
@@ -145,6 +88,30 @@
 
       }
      });
+   });
+
+   $("#btn").click(function () {
+      $(".result").css("display", "block");  // Memperbaiki penampilan elemen `.result`
+      $.ajax({
+         type: "GET",
+         url: BASE_URL_SEARCH + INPUT_USER.val(),  // Menggunakan BASE_URL_SEARCH untuk pencarian
+         dataType: "json",
+         success: function (response) {
+            if (response.meals) {
+               const meals = response.meals[0];
+
+               $(".result img").attr("src", meals.strMealThumb);
+               $(".result h1").text(meals.strMeal);
+               $(".result p").text(meals.strInstructions);
+            } 
+            else {
+               alert("Makanan tidak ditemukan!");
+            }
+         },
+         error: function() {
+            alert("Terjadi kesalahan. Silakan coba lagi.");
+         }
+      });
    });
 
 </script>
