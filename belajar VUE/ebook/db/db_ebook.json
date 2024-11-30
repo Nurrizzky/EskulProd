@@ -24,6 +24,20 @@
          "title": "legenda pocong keliling",
          "author": "Rizky",
          "synopsis": "Leganda pocong keliling adalah cerita fiksi dari rakyat yang ada di sebuah desa di daerah jawa tengah."
+      },
+      {
+         "id": 2,
+         "book_category_id": 2,
+         "title": "Kudasai",
+         "author": "Brian Khrisna",
+         "synopsis": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae iure asperiores neque quaerat soluta? Inventore!."
+      },
+      {
+         "id": 3,
+         "book_category_id": 1,
+         "title": "Yang Telah lama pergi",
+         "author": "Tere Liye",
+         "synopsis": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit sint vel voluptatibus odit cumque debitis numquam libero, ad maiores minus.."
       }
    ],
    "book_chapters" : [
