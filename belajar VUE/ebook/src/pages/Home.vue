@@ -1,13 +1,13 @@
 <template>
    <div class="container d-flex justify-content-center">
       <!-- v-for : loop data di books disimpan per-item-nya di book (as) data tiap itemnya dikirim ke props bernama book yang ada di CardComponent -->
-     <CardComponent v-for="data in books" :data="data"/>
+     <CardComponent v-for="data in filteredBook" :book="data"/>
    </div>
  </template>
  
  <script>
  import CardComponent from '@/components/Card.vue';
- import  axios  from 'axios';
+ import axios from 'axios';
  
  export default {
    name: "HomePage",
@@ -17,6 +17,24 @@
    data() {
       return {
          books: []
+      }
+   },
+   props: {
+      textSearch: {
+         type: String
+      }
+   },
+   computed: {
+      // computed ini variabel yang isinya bakal berubah ubah jika suatu variabel lainnya mengalami perubahan 
+      filteredBook() {
+         // jika textSearch tidak ada isinya, gunakan data dari books
+         if (!this.textSearch) {
+            return this.books;
+         }
+         // jika ada textSearch, books difilterisasi sesuai yang dicari 
+         // toLowerCase agar teks di book.title dan di textSearch sama sama huruf besar agar huruf besar kecil dipencarian tidak berpengaruh
+         // includes sama seperti LIKE 
+          return this.books.filter(book => book.title.toLowerCase().includes(this.textSearch.toLowerCase()))
       }
    },
    mounted() {

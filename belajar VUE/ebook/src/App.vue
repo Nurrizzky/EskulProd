@@ -1,9 +1,11 @@
 <template>
   <div>
     <!-- namanya sesuai dengan components: (bawah) -->
-    <NavBar />
+     <!-- @bisa untuk Event, kalau nama @ nya gaada di list event js, maka dia sebuah emmit -->
+    <NavBar @textSearch="handleSearchEmit" />
     <!-- menampilkan pages sesuai dengan url/path yang diakses -->
-    <router-view></router-view>
+     <!-- Mengirim props bernama textSearch dari data local bernama textSearch -->
+    <router-view :textSearch="textSearch"></router-view>
   </div>
 </template>
 
@@ -15,6 +17,17 @@ import NavBar from './components/NavBar.vue';
     // inisialize components yang sudah di import agar bisa 
     components: {
       NavBar
+    },
+    data() {
+      return {
+        textSearch: ""
+      }
+    },
+    methods: {
+      handleSearchEmit(textSearchFromEmit) {
+        // data yang dikirim emit, disimpan sebagai data local file ini
+        this.textSearch = textSearchFromEmit;
+      }
     }
   }
 </script>

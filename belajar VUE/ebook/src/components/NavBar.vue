@@ -17,7 +17,8 @@
       </ul>
       <div class="d-flex align-items-center flex-column flex-lg-row">
         <form class="me-2 mb-2 mb-lg-0">
-          <input type="text" class="form-control form-control-sm" placeholder="Search" />
+          <!-- @input adalah event -->
+          <input type="text" class="form-control form-control-sm" placeholder="Search" v-model="textSearch" @input="searchBook" />
         </form>
         <a class="btn btn-primary" href="">Search</a>
       </div>
@@ -34,7 +35,17 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      categories: []
+      categories: [],
+      textSearch: ""
+    }
+  },
+  methods: {
+    searchBook() {
+      // kirim data dari sini ke parent nya ($emit).
+      // emit mengeluarkan data 
+      // dikirim ke parent karna hasil search datanya akan dikirim ke Card,  Card dipanggil di Home, Home dipanggil di App. 
+      // App merupakan parent NavBar (tempat Navbar dipanggil).
+      this.$emit("textSearch", this.textSearch);
     }
   },
 
